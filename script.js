@@ -52,7 +52,36 @@ function showRoundMessage(outcome, playerSelection, computerSelection) {
     }
 }
 
+// Show score message
+function showScoreMessage(playerScore, computerScore) {
+    return (`Player: ${playerScore}\nComputer: ${computerScore}`);
+}
 
+
+// Play 5 rounds with scoreboard
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = playerPlay();
+        const computerSelection = computerPlay();
+        if (playRound(playerSelection, computerSelection) === 'player') {
+            playerScore += 1;
+            showRoundMessage("player", playerSelection, computerSelection)
+        } else if (playRound(playerSelection, computerSelection) === 'computer') {
+            computerScore += 1;
+            showRoundMessage("computer", playerSelection, computerSelection)
+        } else {
+            showRoundMessage("tie", playerSelection, computerSelection);
+        }
+        if (playerScore >= 3 || computerScore >= 3) {
+            break;
+        }
+    }
+
+
+}
 
 
 console.log(playRound(playerPlay(), computerPlay()));
