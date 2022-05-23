@@ -3,11 +3,11 @@ function computerPlay() {
     const randInt = Math.floor(Math.random() * 3);
     switch (randInt) {
         case 0:
-            return "rock";
+            return "Rock";
         case 1:
-            return "paper";
+            return "Paper";
         case 2:
-            return "scissors";
+            return "Scissors";
         default:
             console.log("Something went wrong");
     }
@@ -15,8 +15,8 @@ function computerPlay() {
 
 // Ask player to choose 
 function playerPlay() {
-    const playerChoice = prompt("Choose 'rock', 'paper', or 'scissors': ").trim().toLowerCase();
-    if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
+    const playerChoice = capitalizeFirstLetter(prompt("Choose 'Rock', 'Paper', or 'Scissors': ").trim());
+    if (playerChoice === "Rock" || playerChoice === "Paper" || playerChoice === "Scissors") {
         return playerChoice;
     } else {
         return false;
@@ -26,14 +26,20 @@ function playerPlay() {
 // Play a single round
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        return "tie";
-    } else if ((playerSelection === "paper" && computerSelection === "rock") || 
-        (playerSelection === "rock" && computerSelection === "scissors") ||
-        (playerSelection === "scissors" && computerSelection === "paper")) {
-        return "player";
+        return `Tie Game! You both chose ${playerSelection}.`;
+    } else if ((playerSelection === "Paper" && computerSelection === "Rock") || 
+        (playerSelection === "Rock" && computerSelection === "Scissors") ||
+        (playerSelection === "Scissors" && computerSelection === "Paper")) {
+            return `You Win! ${playerSelection} beats ${computerSelection}.`;;
     } else {
-        return "computer";
+        return `You lose. ${playerSelection} loses against ${computerSelection}.`;
     }
 }
+
+// Capitalize the first letter of a string
+function capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(2).toLowerCase();
+}
+
 
 console.log(playRound("scissors", "rock"));
