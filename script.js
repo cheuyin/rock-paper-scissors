@@ -15,7 +15,7 @@ function computerPlay() {
 
 // Ask player to choose 
 function playerPlay() {
-    const playerChoice = capitalizeFirstLetter(prompt("Choose 'Rock', 'Paper', or 'Scissors': ").trim());
+    const playerChoice = capitalizeFirstLetter(prompt('Choose "Rock", "Paper", or "Scissors": ').trim());
     if (playerChoice === "Rock" || playerChoice === "Paper" || playerChoice === "Scissors") {
         return playerChoice;
     } else {
@@ -26,20 +26,33 @@ function playerPlay() {
 // Play a single round
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        return `Tie Game! You both chose ${playerSelection}.`;
+        return "tie";
     } else if ((playerSelection === "Paper" && computerSelection === "Rock") || 
         (playerSelection === "Rock" && computerSelection === "Scissors") ||
         (playerSelection === "Scissors" && computerSelection === "Paper")) {
-            return `You Win! ${playerSelection} beats ${computerSelection}.`;;
+            return "player"
     } else {
-        return `You lose. ${playerSelection} loses against ${computerSelection}.`;
+        return "computer";
     }
 }
 
 // Capitalize the first letter of a string
 function capitalizeFirstLetter(str) {
-    return str.charAt(0).toUpperCase() + str.slice(2).toLowerCase();
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
+// Show round message
+function showRoundMessage(outcome, playerSelection, computerSelection) {
+    if (outcome === "tie") {
+        return `Tie Game! You both chose ${playerSelection}.`;
+    } else if (outcome === "player") {
+            return `You Win! ${playerSelection} beats ${computerSelection}.`;
+    } else {
+        return `You lose. ${playerSelection} loses against ${computerSelection}.`;
+    }
 }
 
 
-console.log(playRound("scissors", "rock"));
+
+
+console.log(playRound(playerPlay(), computerPlay()));

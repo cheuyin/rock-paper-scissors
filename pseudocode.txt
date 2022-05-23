@@ -5,9 +5,9 @@ Function playerPlay
     The player chooses one of "rock", "paper", or "scissors"
 
 Function playRound(computerSelection, playerSelection)
-    If computer wins, return 'computer'
-    If player wins, return 'player'
-    If tie, return 'tie'
+    If computer wins, return appropriate message
+    If player wins, return appropriate message
+    If tie, return appropriate message
 
 Function game
     For 5 iterations
