@@ -43,18 +43,36 @@ function capitalizeFirstLetter(str) {
 
 // Show round message
 function showRoundMessage(outcome, playerSelection, computerSelection) {
-    if (outcome === "tie") {
-        return `Tie Game! You both chose ${playerSelection}.`;
+    if (playerSelection === false) {
+        console.log(`You lose. Your input was invalid.`);
+    } else if (outcome === "tie") {
+        console.log(`Tie! You both chose ${playerSelection}.`);
     } else if (outcome === "player") {
-            return `You Win! ${playerSelection} beats ${computerSelection}.`;
+        console.log(`You Win! ${playerSelection} beats ${computerSelection}.`);
     } else {
-        return `You lose. ${playerSelection} loses against ${computerSelection}.`;
+        console.log(`You lose. ${playerSelection} loses against ${computerSelection}.`);
     }
 }
 
-// Show score message
-function showScoreMessage(playerScore, computerScore) {
-    return (`Player: ${playerScore}\nComputer: ${computerScore}`);
+// Show score board
+function showScoreBoard(playerScore, computerScore) {
+    console.log(`Player: ${playerScore}\nComputer: ${computerScore}`);
+}
+
+// Show round number
+function showRoundNumber(roundNumber) {
+    console.log(`Round ${roundNumber}/5`)
+}
+
+// Show game end message
+function showGameEndMessage(finalPlayerScore, finalComputerScore) {
+    if (finalPlayerScore === finalComputerScore) {
+        console.log(`Tie Game! The final score is ${finalPlayerScore} - ${finalComputerScore}.`);
+    } else if (finalPlayerScore > finalComputerScore) {
+        console.log(`You win the game! The final score is ${finalPlayerScore} - ${finalComputerScore}.`);
+    } else {
+        console.log(`You lost the game. The final score is ${finalPlayerScore} - ${finalComputerScore}.`);
+    }
 }
 
 
@@ -64,6 +82,7 @@ function game() {
     let computerScore = 0;
 
     for (let i = 0; i < 5; i++) {
+        showRoundNumber(i + 1);
         const playerSelection = playerPlay();
         const computerSelection = computerPlay();
         if (playRound(playerSelection, computerSelection) === 'player') {
@@ -78,10 +97,11 @@ function game() {
         if (playerScore >= 3 || computerScore >= 3) {
             break;
         }
+        showScoreBoard(playerScore, computerScore);
     }
 
-
+    showGameEndMessage(playerScore, computerScore)
 }
 
-
-console.log(playRound(playerPlay(), computerPlay()));
+// Run game loop
+game();
