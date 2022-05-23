@@ -23,3 +23,17 @@ function playerPlay() {
     }
 }
 
+// Play a single round
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection === computerSelection) {
+        return "tie";
+    } else if ((playerSelection === "paper" && computerSelection === "rock") || 
+        (playerSelection === "rock" && computerSelection === "scissors") ||
+        (playerSelection === "scissors" && computerSelection === "paper")) {
+        return "player";
+    } else {
+        return "computer";
+    }
+}
+
+console.log(playRound("scissors", "rock"));
