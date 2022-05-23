@@ -44,13 +44,13 @@ function capitalizeFirstLetter(str) {
 // Show round message
 function showRoundMessage(outcome, playerSelection, computerSelection) {
     if (playerSelection === false) {
-        console.log(`You lose. Your input was invalid.`);
+        console.log(`You lost the round. Your input was invalid.`);
     } else if (outcome === "tie") {
-        console.log(`Tie! You both chose ${playerSelection}.`);
+        console.log(`Tied round! You both chose ${playerSelection}.`);
     } else if (outcome === "player") {
-        console.log(`You Win! ${playerSelection} beats ${computerSelection}.`);
+        console.log(`You won the round! ${playerSelection} beats ${computerSelection}.`);
     } else {
-        console.log(`You lose. ${playerSelection} loses against ${computerSelection}.`);
+        console.log(`You lost the round. ${playerSelection} loses against ${computerSelection}.`);
     }
 }
 
@@ -61,7 +61,7 @@ function showScoreBoard(playerScore, computerScore) {
 
 // Show round number
 function showRoundNumber(roundNumber) {
-    console.log(`Round ${roundNumber}/5`)
+    console.log(`Round ${roundNumber}/5: `)
 }
 
 // Show game end message
