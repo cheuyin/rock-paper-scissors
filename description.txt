@@ -1,7 +1,7 @@
-Program Name: Tic Tac Toe
+Program Name: Rock, Paper, Scissors
 
 Description:
-    - Player plays 5 rounds of tic tac toe against a computer
+    - Player plays 5 rounds of Rock, Paper, Scissors against a computer
     - There is a scoreboard that keeps the score after each round
     - The winner of a game is declared (whoever wins 3 rounds first)
     - There is an option to start again
