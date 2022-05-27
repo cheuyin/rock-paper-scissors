@@ -1,0 +1,17 @@
+COMPONENTS OF THE PROGRAM 
+- Title ("Rock, Papers, Scissors")
+- Scoreboard for a single game (e.g 3-2)
+- Message stating outcome of current round (e.g. "You win the round. Rock
+        beats scissors")
+- 3 buttons for the player to choose from: "Rock", "Paper", or "Scissors"
+- A "Play Again" button that appears when a game is over
+
+Player presses a button to choose either Rock, Paper, or Scissors
+
+Randomly generate a computer choice
+
+Record the outcome of the round and leave a message of it as well
+
+However wins 5 rounds wins the game
+
+A third button appears, allowing the player to start a new game
