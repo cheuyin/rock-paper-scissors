@@ -1,0 +1,54 @@
+* {
+    font-family: arial, sans-serif;
+}
+
+button {
+    cursor: pointer;
+    width: 100px;
+    padding: 10px;
+    margin: 0px 10px;
+    border: none;
+}
+
+button:hover:enabled {
+    background-color: grey;
+    color: silver;
+}
+
+.hide {
+    display: none;
+}
+
+
+.round-message {
+    height: 50px;
+    text-align: center;
+    margin: 50px 0px 20px 0px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+    margin-top: 50px;
+}
+
+
+.scoreboard .score {
+    font-size: 50px;
+    font-weight: 800;
+}
+
+.play-buttons {
+    text-align: center;
+}
+
+.play-again {
+    text-align: center;
+    margin-top: 20px;
+}
