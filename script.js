@@ -69,7 +69,9 @@ function renderScore() {
     computerScoreDisplay.textContent = computerScore;
 }
 
+function showRoundMessage() {
 
+}
 
 
 
