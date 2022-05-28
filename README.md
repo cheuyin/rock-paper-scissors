@@ -2,4 +2,4 @@
 
 The classic elementary school game, on a web page.
 
-Live Link: 
+[Live Link](https://cheuyin.github.io/rock-paper-scissors/)
