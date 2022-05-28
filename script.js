@@ -4,6 +4,7 @@ let computerScore = 0;
 
 const playerScoreDisplay= document.querySelector(".scoreboard .player .score");
 const computerScoreDisplay = document.querySelector(".scoreboard .computer .score");
+const roundMessageDisplay = document.querySelector(".round-message p")
 
 renderScore();
 activateButtons();
@@ -36,16 +37,16 @@ function generateRandomComputerSelection() {
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         updateScore("Tie")
-        return [playerSelection, computerSelection, "Tie"];
+        showRoundMessage([playerSelection, computerSelection, "Tie"]);
     } else if ((playerSelection === "Paper" && computerSelection === "Rock") || 
         (playerSelection === "Rock" && computerSelection === "Scissors") ||
         (playerSelection === "Scissors" && computerSelection === "Paper")) {
             updateScore("Player")
-            return [playerSelection, computerSelection, "Player"];
-        } else {
-            updateScore("Computer")
-            return [playerSelection, computerSelection, "Computer"];
-        }
+            showRoundMessage([playerSelection, computerSelection, "Player"]);
+    } else {
+        updateScore("Computer")
+        showRoundMessage([playerSelection, computerSelection, "Computer"]);
+    }
 }
 
 function updateScore(outcome) {
@@ -69,9 +70,30 @@ function renderScore() {
     computerScoreDisplay.textContent = computerScore;
 }
 
-function showRoundMessage() {
+function showRoundMessage(roundData) {
+    const playerSelection = roundData[0];
+    const computerSelection = roundData[1];
+    const roundOutcome = roundData[2];
 
+    switch (roundOutcome) {
+        case "Tie":
+            roundMessageDisplay.textContent = `Tie! You both chose 
+                    ${playerSelection}.`
+            break;
+        case "Player":
+            roundMessageDisplay.textContent = `You win the round! ${playerSelection} 
+                    beats ${computerSelection}.`;
+            break;
+        case "Computer":
+            roundMessageDisplay.textContent = `You lose the round. ${playerSelection} 
+                    loses against ${computerSelection}.`;
+            break;     
+        default:
+            console.log(roundOutcome)
+            alert("Something went wrong with the round message display");
+    }
 }
+
 
 
 
