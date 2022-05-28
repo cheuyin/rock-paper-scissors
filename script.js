@@ -2,8 +2,8 @@
 let playerScore = 0;
 let computerScore = 0;
 
-const playerScoreDisplay= document.querySelector(".scoreboard .player .score");
-const computerScoreDisplay = document.querySelector(".scoreboard .computer .score");
+const playerScoreDisplay= document.querySelector(".scoreboard .score .player");
+const computerScoreDisplay = document.querySelector(".scoreboard .score .computer");
 const roundMessageDisplay = document.querySelector(".round-message p")
 const rockButton = document.querySelector("button.rock");
 const paperButton = document.querySelector("button.paper");
