@@ -5,25 +5,30 @@ let computerScore = 0;
 const playerScoreDisplay= document.querySelector(".scoreboard .player .score");
 const computerScoreDisplay = document.querySelector(".scoreboard .computer .score");
 const roundMessageDisplay = document.querySelector(".round-message p")
+const rockButton = document.querySelector("button.rock");
+const paperButton = document.querySelector("button.paper");
+const scissorsButton = document.querySelector("button.scissors");
+const playAgainButton = document.querySelector(".play-again button");
 
 renderScore();
-activateButtons();
+createButtonListeners();
 
 
-function activateButtons() {
-    const rockButton = document.querySelector("button.rock");
+function createButtonListeners() {
     rockButton.addEventListener("click", () => {
         playRound("Rock", generateRandomComputerSelection());
     });
     
-    const paperButton = document.querySelector("button.paper");
     paperButton.addEventListener("click", () => {
         playRound("Paper", generateRandomComputerSelection());
     });
     
-    const scissorsButton = document.querySelector("button.scissors");
     scissorsButton.addEventListener("click", () => {
         playRound("Scissors", generateRandomComputerSelection());
+    });
+
+    playAgainButton.addEventListener("click", () => {
+        resetGame();
     });
 }
 
@@ -32,21 +37,28 @@ function generateRandomComputerSelection() {
     return options[Math.floor(Math.random() * 3)];
 }
 
+
 // Play a single round
 // Return the outcome of a round as well as player / computer selections
 function playRound(playerSelection, computerSelection) {
+    let roundData = [playerSelection, computerSelection, "Undecided"]
     if (playerSelection === computerSelection) {
+        roundData[2] = "Tie"
         updateScore("Tie")
-        showRoundMessage([playerSelection, computerSelection, "Tie"]);
+        showRoundMessage(roundData);
     } else if ((playerSelection === "Paper" && computerSelection === "Rock") || 
         (playerSelection === "Rock" && computerSelection === "Scissors") ||
         (playerSelection === "Scissors" && computerSelection === "Paper")) {
+            roundData[2] = "Player"
             updateScore("Player")
-            showRoundMessage([playerSelection, computerSelection, "Player"]);
+            showRoundMessage(roundData);
     } else {
+        roundData[2] = "Computer";
         updateScore("Computer")
-        showRoundMessage([playerSelection, computerSelection, "Computer"]);
+        showRoundMessage(roundData);
     }
+
+    checkGameEnd();
 }
 
 function updateScore(outcome) {
@@ -75,6 +87,18 @@ function showRoundMessage(roundData) {
     const computerSelection = roundData[1];
     const roundOutcome = roundData[2];
 
+    // If someone gets to 5 points
+    if (playerScore === 5) {
+        roundMessageDisplay.textContent = `You win the game! ${playerSelection} 
+        beats ${computerSelection}.`;
+        return;
+    } else if (computerScore === 5) {
+        roundMessageDisplay.textContent = `You lose the game! ${playerSelection} 
+        loses against ${computerSelection}.`;
+        return;
+    }
+
+
     switch (roundOutcome) {
         case "Tie":
             roundMessageDisplay.textContent = `Tie! You both chose 
@@ -93,6 +117,43 @@ function showRoundMessage(roundData) {
             alert("Something went wrong with the round message display");
     }
 }
+
+// Add end-of-game functionality
+
+function checkGameEnd() {
+    if (playerScore === 5 || computerScore === 5) {
+        runGameEndLogic();
+        return true;
+    }
+    return false;
+}
+
+function runGameEndLogic() {
+    // Disable play buttons
+    rockButton.setAttribute("disabled", true);
+    paperButton.setAttribute("disabled", true);
+    scissorsButton.setAttribute("disabled", true);
+
+    // Show "Play Again" button
+    playAgainButton.classList.toggle("hide");
+}
+
+function resetGame() {
+    // Reset buttons
+    playAgainButton.classList.toggle("hide");
+    rockButton.removeAttribute("disabled");
+    paperButton.removeAttribute("disabled");
+    scissorsButton.removeAttribute("disabled");
+
+    // Reset score
+    playerScore = 0;
+    computerScore = 0;
+    renderScore();
+
+    // Reset round message
+    roundMessageDisplay.textContent = "";
+}
+
 
 
 
